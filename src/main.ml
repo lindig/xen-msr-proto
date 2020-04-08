@@ -2,9 +2,10 @@ module C = Cmdliner
 
 let run _ =
   Xen.Msr.init ();
-  let cpu, msr = Xen.Msr.get () in
-  Printf.printf "cpu: %s\n" (String.escaped cpu);
-  Printf.printf "msr: %s\n" (String.escaped msr)
+  let x = Xen.Msr.get () in
+  Printf.printf "cpu: %s\n" (String.escaped x.Xen.Msr.cpu);
+  Printf.printf "msr: %s\n" (String.escaped x.Xen.Msr.msr);
+  Printf.printf "ver: %d\n" x.Xen.Msr.version
 
 module Command = struct
   let help =

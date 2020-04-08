@@ -36,9 +36,10 @@ caml_msr_get(value val_unit)
 
         xen_get_max_sizes(&nr_cpu, &nr_msr);
 
-        ret = caml_alloc_tuple(2);
+        ret = caml_alloc_tuple(3);
         Store_field(ret, 0, caml_alloc_string(nr_cpu * sizeof(cpu_policy_t)));
         Store_field(ret, 1, caml_alloc_string(nr_msr * sizeof(msr_member_t)));
+        Store_field(ret, 2, Val_int(100));      /* version */
 
 
         cpu = (cpu_policy_t *) String_val(Field(ret, 0));
