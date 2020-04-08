@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <sys/resource.h>
 #include <unistd.h>
+#include <assert.h>
 
 #include <caml/mlvalues.h>
 #include <caml/callback.h>
@@ -24,6 +25,22 @@ caml_msr_init(value val_unit)
 }
 
 CAMLprim        value
+caml_msr_set(value caml_msr)
+{
+        CAMLparam1(caml_msr);
+
+        int             version;
+
+        assert(Is_block(caml_msr));
+        assert(Wosize_val(caml_msr) == 3);
+
+        version = Int_val(Field(caml_msr, 2));
+        printf("version = %d\n", version);
+
+        CAMLreturn(Val_unit);
+}
+
+CAMLprim        value
 caml_msr_get(value val_unit)
 {
         CAMLparam1(val_unit);
@@ -36,6 +53,7 @@ caml_msr_get(value val_unit)
 
         xen_get_max_sizes(&nr_cpu, &nr_msr);
 
+        /* allocate Msr.t record */
         ret = caml_alloc_tuple(3);
         Store_field(ret, 0, caml_alloc_string(nr_cpu * sizeof(cpu_policy_t)));
         Store_field(ret, 1, caml_alloc_string(nr_msr * sizeof(msr_member_t)));

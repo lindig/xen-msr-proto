@@ -5,7 +5,8 @@ let run _ =
   let x = Xen.Msr.get () in
   Printf.printf "cpu: %s\n" (String.escaped x.Xen.Msr.cpu);
   Printf.printf "msr: %s\n" (String.escaped x.Xen.Msr.msr);
-  Printf.printf "ver: %d\n" x.Xen.Msr.version
+  Printf.printf "ver: %d\n" x.Xen.Msr.version;
+  Xen.Msr.set { x with version = 200 }
 
 module Command = struct
   let help =
