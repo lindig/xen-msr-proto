@@ -3,8 +3,8 @@ module C = Cmdliner
 let run () =
   Xen.Msr.init ();
   let x = Xen.Msr.get () in
-  Printf.printf "cpu: %s\n" (String.escaped x.Xen.Msr.cpu);
-  Printf.printf "msr: %s\n" (String.escaped x.Xen.Msr.msr);
+  Printf.printf "cpu: %s\n" Xen.Msr.(to_string x.cpu);
+  Printf.printf "msr: %s\n" Xen.Msr.(to_string x.msr);
   Printf.printf "ver: %d\n" x.Xen.Msr.version;
   Xen.Msr.set { x with version = 200 }
 

@@ -1,7 +1,11 @@
+type blob
 
-type t = { cpu : string; msr : string; version : int }
+type t = { cpu : blob; msr : blob; version : int }
 
-val init: unit -> unit
-val get: unit -> t
-val set: t -> unit
+val init : unit -> unit
 
+val to_string : blob -> string
+
+val get : unit -> t
+
+val set : t -> unit
