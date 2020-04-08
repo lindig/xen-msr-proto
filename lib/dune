@@ -1,5 +1,4 @@
-
 (library
- (name            xen)
- (libraries       unix)
- (c_names         xen msr_stubs))
+ (name xen)
+ (libraries unix)
+ (c_names xen msr_stubs))
