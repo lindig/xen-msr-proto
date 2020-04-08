@@ -1,6 +1,6 @@
 module C = Cmdliner
 
-let run _ =
+let run () =
   Xen.Msr.init ();
   let x = Xen.Msr.get () in
   Printf.printf "cpu: %s\n" (String.escaped x.Xen.Msr.cpu);
@@ -18,17 +18,11 @@ module Command = struct
     ; `P "Check bug reports at https://github.com/lindig/hello/issues"
     ]
 
-  let name' =
-    C.Arg.(
-      value & pos 0 string "world"
-      & info [] ~docv:"NAME"
-          ~doc:"Name of person to greet; the default is 'world'.")
-
-  let hello =
-    let doc = "Say hello to someone" in
-    C.Term.(const run $ name', info "hello" ~doc ~man:help)
+  let main =
+    let doc = "Just run the command" in
+    C.Term.(const run $ const (), info "hello" ~doc ~man:help)
 end
 
-let main () = C.Term.(exit @@ eval Command.hello)
+let main () = C.Term.(exit @@ eval Command.main)
 
 let () = if !Sys.interactive then () else main ()

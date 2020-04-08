@@ -6,4 +6,4 @@
 (alias
  (name runtest)
  (action
-  (run ./main.exe everybody)))
+  (run ./main.exe)))
