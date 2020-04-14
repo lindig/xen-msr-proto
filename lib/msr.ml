@@ -16,4 +16,6 @@ let get = Xen.get
 
 let set = Xen.set
 
-let to_string blob = String.escaped blob
+let version t = t.version
+
+let to_string t = (String.escaped t.cpu, String.escaped t.msr)

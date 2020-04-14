@@ -2,11 +2,12 @@ module C = Cmdliner
 
 let run () =
   Xen.Msr.init ();
-  let x = Xen.Msr.get () in
-  Printf.printf "cpu: %s\n" Xen.Msr.(to_string x.cpu);
-  Printf.printf "msr: %s\n" Xen.Msr.(to_string x.msr);
-  Printf.printf "ver: %d\n" x.Xen.Msr.version;
-  Xen.Msr.set { x with version = 200 }
+  let t = Xen.Msr.get () in
+  let cpu, msr = Xen.Msr.to_string t in
+  Printf.printf "cpu: %s\n" cpu;
+  Printf.printf "msr: %s\n" msr;
+  Printf.printf "ver: %d\n" (Xen.Msr.version t);
+  Xen.Msr.set t
 
 module Command = struct
   let help =
