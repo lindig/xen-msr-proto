@@ -6,6 +6,8 @@ let run () =
   let cpu, msr = Xen.Msr.to_string t in
   Printf.printf "cpu: %s\n" cpu;
   Printf.printf "msr: %s\n" msr;
+  Printf.printf "cpu entries: %d\n" (Xen.Msr.nr_cpu t);
+  Printf.printf "msr entries: %d\n" (Xen.Msr.nr_msr t);
   Printf.printf "ver: %d\n" (Xen.Msr.version t);
   Xen.Msr.set t
 

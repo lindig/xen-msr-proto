@@ -63,12 +63,12 @@ Central ideas for the OCaml representation are:
 
 * Missing: creating a `Msr.t` value from a string.
 
-    type t
-    val init : unit -> unit
-    val get : unit -> t
-    val set : t -> unit
-    val version : t -> int
-    val to_string : t -> string * string
+        type t
+        val init : unit -> unit
+        val get : unit -> t
+        val set : t -> unit
+        val version : t -> int
+        val to_string : t -> string * string
 
 ## The OCaml Implementation 
 

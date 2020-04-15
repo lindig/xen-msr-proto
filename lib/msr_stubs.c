@@ -32,7 +32,7 @@ caml_msr_set(value caml_msr)
         int             version;
 
         assert(Is_block(caml_msr));
-        assert(Wosize_val(caml_msr) == 3);
+        assert(Wosize_val(caml_msr) == 5);
 
         version = Int_val(Field(caml_msr, 2));
         printf("version = %d\n", version);
@@ -54,11 +54,12 @@ caml_msr_get(value val_unit)
         xen_get_max_sizes(&nr_cpu, &nr_msr);
 
         /* allocate Msr.t record */
-        ret = caml_alloc_tuple(3);
+        ret = caml_alloc_tuple(5);
         Store_field(ret, 0, caml_alloc_string(nr_cpu * sizeof(cpu_policy_t)));
         Store_field(ret, 1, caml_alloc_string(nr_msr * sizeof(msr_member_t)));
         Store_field(ret, 2, Val_int(100));      /* version */
-
+        Store_field(ret, 3, Val_int(nr_cpu));
+        Store_field(ret, 4, Val_int(nr_msr));
 
         cpu = (cpu_policy_t *) String_val(Field(ret, 0));
         for (i = 0; i < nr_cpu; i++) {
