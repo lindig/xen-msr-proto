@@ -16,6 +16,8 @@
 
 #include "xen.h"
 
+#define CAML_MSR_T_SIZE 5       /* fields in Xen.Msr.t */
+
 CAMLprim        value
 caml_msr_init(value val_unit)
 {
@@ -32,7 +34,7 @@ caml_msr_set(value caml_msr)
         int             version;
 
         assert(Is_block(caml_msr));
-        assert(Wosize_val(caml_msr) == 5);
+        assert(Wosize_val(caml_msr) == CAML_MSR_T_SIZE);
 
         version = Int_val(Field(caml_msr, 2));
         printf("version = %d\n", version);
@@ -54,7 +56,7 @@ caml_msr_get(value val_unit)
         xen_get_max_sizes(&nr_cpu, &nr_msr);
 
         /* allocate Msr.t record */
-        ret = caml_alloc_tuple(5);
+        ret = caml_alloc_tuple(CAML_MSR_T_SIZE);
         Store_field(ret, 0, caml_alloc_string(nr_cpu * sizeof(cpu_policy_t)));
         Store_field(ret, 1, caml_alloc_string(nr_msr * sizeof(msr_member_t)));
         Store_field(ret, 2, Val_int(100));      /* version */
