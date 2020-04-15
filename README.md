@@ -1,11 +1,11 @@
 
 
-![Build](https://github.com/lindig/hello/workflows/CI/badge.svg)
+![Build](https://github.com/lindig/xen-msr-proto/workflows/CI/badge.svg)
 
-# Hello
+# Xen/OCaml Interface
 
-This is a minimal [OCaml] project that I use as a starting point for new
-projects.
+This explores an interface between OCaml and Xen for Machien Specific
+Registers.
 
 * Top-level Makefile for convenience: just say `make` but the actual
   build is managed by Dune

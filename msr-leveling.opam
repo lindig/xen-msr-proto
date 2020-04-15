@@ -1,14 +1,14 @@
 opam-version: "2.0"
-name: "hello"
-synopsis: "Minimal OCaml project for starting a new one"
+name: "msr-leveling"
+synopsis: "Explore Xen/OCaml interface for MSR"
 maintainer: "Christian Lindig <lindig@gmail.com>"
 authors: "Christian Lindig <lindig@gmail.com>"
 license: "Unlicense"
-homepage: "https://github.com/lindig/hello"
-bug-reports: "https://github.com/lindig/hello/issues"
+homepage: "https://github.com/lindig/xen-msr-proto"
+bug-reports: "https://github.com/lindig/xen-msr-proto/issues"
 depends: [
   "dune" {build}
   "cmdliner"
 ]
 build: ["dune" "build" "-j" jobs "@install"]
-dev-repo: "git+https://github.com/lindig/hello.git"
+dev-repo: "git+https://github.com/lindig/xen-msr-proto.git"
