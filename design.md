@@ -15,6 +15,10 @@ represented by a C struct. The capabiities of a host are represented by
 two arrays of such values. From an outside perspective each array is a
 binary object (blob) that needs to be passed between Xen and OCaml.
 
+## Code Repository
+
+* [GitHub: lindig/xen-msr-proto](https://github.com/lindig/xen-msr-proto)
+
 ## The Xen Interface
 
 The code below represents a simplified interface similar to the real Xen

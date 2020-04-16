@@ -4,7 +4,7 @@
 
 # Xen/OCaml Interface
 
-This explores an interface between OCaml and Xen for Machien Specific
+This explores an interface between OCaml and Xen for Machine Specific
 Registers.
 
 * Top-level Makefile for convenience: just say `make` but the actual
